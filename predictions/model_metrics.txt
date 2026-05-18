@@ -1,0 +1,157 @@
+Agricultural Suitability Model - Konya and Surroundings
+Dataset rows after cleaning: 1753
+Features: 15
+
+Feature columns:
+- B2_Blue
+- B3_Green
+- B4_Red
+- B8_NIR
+- B11_SWIR1
+- B12_SWIR2
+- NDVI
+- NDWI
+- EVI
+- SAVI
+- Elevation
+- Slope
+- Aspect
+- Annual_Rainfall
+- LST_Celsius
+
+Model development, training, testing and comparison:
+Each classifier was trained first with baseline parameters and then trained again with different tuned parameters.
+
+Summary table:
+Classifier	Training Stage	Parameters	Accuracy	F1 Score
+Logistic Regression	Baseline	max_iter=1000, C=1.0	0.9522	0.9565
+Logistic Regression	Tuned	max_iter=2000, C=0.5, class_weight=balanced	0.9476	0.9522
+Random Forest	Baseline	n_estimators=100, max_depth=None	0.9658	0.9682
+Random Forest	Tuned	n_estimators=300, max_depth=None, min_samples_split=4, class_weight=balanced	0.9704	0.9725
+Gradient Boosting	Baseline	n_estimators=100, learning_rate=0.1, max_depth=3	0.9727	0.9746
+Gradient Boosting	Tuned	n_estimators=200, learning_rate=0.05, max_depth=3	0.9749	0.9767
+
+Detailed evaluation:
+
+Model: Logistic Regression (Baseline)
+Classifier: Logistic Regression
+Training Stage: Baseline
+Parameters: max_iter=1000, C=1.0
+Accuracy: 0.9522
+F1 Score: 0.9565
+Confusion Matrix:
+[[187  16]
+ [  5 231]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9740    0.9212    0.9468       203
+           1     0.9352    0.9788    0.9565       236
+
+    accuracy                         0.9522       439
+   macro avg     0.9546    0.9500    0.9517       439
+weighted avg     0.9531    0.9522    0.9520       439
+
+
+Model: Logistic Regression (Tuned)
+Classifier: Logistic Regression
+Training Stage: Tuned
+Parameters: max_iter=2000, C=0.5, class_weight=balanced
+Accuracy: 0.9476
+F1 Score: 0.9522
+Confusion Matrix:
+[[187  16]
+ [  7 229]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9639    0.9212    0.9421       203
+           1     0.9347    0.9703    0.9522       236
+
+    accuracy                         0.9476       439
+   macro avg     0.9493    0.9458    0.9471       439
+weighted avg     0.9482    0.9476    0.9475       439
+
+
+Model: Random Forest (Baseline)
+Classifier: Random Forest
+Training Stage: Baseline
+Parameters: n_estimators=100, max_depth=None
+Accuracy: 0.9658
+F1 Score: 0.9682
+Confusion Matrix:
+[[196   7]
+ [  8 228]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9608    0.9655    0.9631       203
+           1     0.9702    0.9661    0.9682       236
+
+    accuracy                         0.9658       439
+   macro avg     0.9655    0.9658    0.9656       439
+weighted avg     0.9659    0.9658    0.9658       439
+
+
+Model: Random Forest (Tuned)
+Classifier: Random Forest
+Training Stage: Tuned
+Parameters: n_estimators=300, max_depth=None, min_samples_split=4, class_weight=balanced
+Accuracy: 0.9704
+F1 Score: 0.9725
+Confusion Matrix:
+[[196   7]
+ [  6 230]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9703    0.9655    0.9679       203
+           1     0.9705    0.9746    0.9725       236
+
+    accuracy                         0.9704       439
+   macro avg     0.9704    0.9700    0.9702       439
+weighted avg     0.9704    0.9704    0.9704       439
+
+
+Model: Gradient Boosting (Baseline)
+Classifier: Gradient Boosting
+Training Stage: Baseline
+Parameters: n_estimators=100, learning_rate=0.1, max_depth=3
+Accuracy: 0.9727
+F1 Score: 0.9746
+Confusion Matrix:
+[[197   6]
+ [  6 230]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9704    0.9704    0.9704       203
+           1     0.9746    0.9746    0.9746       236
+
+    accuracy                         0.9727       439
+   macro avg     0.9725    0.9725    0.9725       439
+weighted avg     0.9727    0.9727    0.9727       439
+
+
+Model: Gradient Boosting (Tuned)
+Classifier: Gradient Boosting
+Training Stage: Tuned
+Parameters: n_estimators=200, learning_rate=0.05, max_depth=3
+Accuracy: 0.9749
+F1 Score: 0.9767
+Confusion Matrix:
+[[197   6]
+ [  5 231]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9752    0.9704    0.9728       203
+           1     0.9747    0.9788    0.9767       236
+
+    accuracy                         0.9749       439
+   macro avg     0.9750    0.9746    0.9748       439
+weighted avg     0.9749    0.9749    0.9749       439
+
+
+Best model: Gradient Boosting (Tuned)
+Best parameters: n_estimators=200, learning_rate=0.05, max_depth=3
